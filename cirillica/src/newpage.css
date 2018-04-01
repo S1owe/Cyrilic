@@ -1,0 +1,61 @@
+@font-face{
+    font-family:SF-UI-Display-Medium;
+    src: url("fonts/SF-UI-Display-Medium.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.backnew {
+	text-align: center;
+    background-color: white; 
+	color: black;
+    width: 9.5%;
+    height: 100%;
+	margin-right :90%;
+	position:fixed;
+	font-size: 21px;
+}
+#new_photo {
+	display:block;
+	margin-bottom: 40px;
+	margin-left : auto;
+	margin-right : auto;
+}
+
+
+#new_title {
+
+	text-align : center;
+	font-size: 45px;
+	margin-top : 50px;
+    margin-bottom : 50px;
+
+}
+
+#new_body {
+	
+	float:left;
+    margin-bottom : 50px;
+	margin-left : 40px;
+	margin-right : 40px;
+	font-size: 20px;
+}
+.back {
+	width: 16px;
+	margin-top :40px;
+	font-size: 21px;
+	}
+
+.closenew {
+    background-color: white; 
+	color: black;
+    width: 9.5%;
+    height: 100%;
+	margin-left :90.5%;
+	margin-right :0%;
+	position:fixed;
+	margin-top :10px;
+	text-align: center;
+	font-size: 23px;
+}
+	

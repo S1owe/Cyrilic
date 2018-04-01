@@ -1,0 +1,384 @@
+html {
+    height: 1600px;
+}
+
+/* List of productions */
+
+#repertory {
+    min-width: 860px;
+    height: 100%;
+}
+
+#repertory_background {
+    position: absolute;
+    min-width: 860px;
+    width: 100%;
+    height: 460px;
+    display: flex;
+    flex-direction: column;
+    background-image: linear-gradient(to top, #370e0f 10%, #9f2806);
+    
+}
+
+#repertory_container {
+    position: absolute;
+    width: 90%;
+    height: 100%;
+    display: flex;
+    margin-top: 30px;
+    left: 5%;
+    flex-direction: column;
+   /* min-width: 880px; */
+}
+
+#repertory_head {
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    font-family: Myriad Pro, sans-serif;
+   /* padding-bottom: 1%;   */
+}
+
+#repertory_head a {
+    color: #ffffff;
+    font-size: 36px;
+    font-weight: normal;
+}
+
+#repertory_head i {
+    font-style: normal;
+    font-size: 26px;
+    margin-left: 2%;
+    font-weight: lighter;
+    font-family: "Calibri Light", sans-serif;
+}
+
+#repertory_head aside {
+    color: #ffffff;
+    font-size: 26px;
+}
+
+#repertory_head a:hover {
+    border-bottom: 2px solid white;
+    cursor: pointer;
+}
+
+#repertory_head_left {
+    display: flex;
+    flex-direction: row;
+    padding-left: 2px;
+}
+
+#repertory_head_right {
+    position: absolute; 
+    right: 0;     
+    top: 4px;
+}
+
+#repertory_content {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    font-family: Myriad Pro, sans-serif;
+    width: 100%;
+    top: 12%;
+    box-shadow:2px 3px 18px 5px rgba(23,23,23,0.33);
+    -webkit-box-shadow:2px 3px 18px 5px rgba(23,23,23,0.33);
+    -moz-box-shadow:2px 3px 18px 5px rgba(23,23,23,0.33);
+}
+
+.repertory_block {
+    width: 25%;
+    height: 100%;
+    background-color: #ffffff;
+    display: flex;
+}
+
+.repertory_content_0, .repertory_content_2 {
+    padding-top: 8px;
+    width: 100%;
+    background-color: #f0f0f0;
+}
+
+.repertory_content_1, .repertory_content_3 {
+    padding-top: 8px;
+   /* background-color: #f0f0f0;    */
+    width: 100%;
+}
+
+/* date */
+
+.repertory_content_date {
+    font-size: 26px;
+    color: #4b4b4b;
+    width: 100%;
+}
+
+/* time */
+
+.repertory_content_time {
+    font-size: 20px;
+    color: #4b4b4b;
+    padding-top: 2px;
+}
+
+/* title */
+
+.repertory_content_title {
+    word-wrap: break-word;
+    text-decoration: underline;
+    width: 80%;
+    margin-left: 10%;
+    height: 40px;
+    padding: 2px 0 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.repertory_content_title a {
+    align-items: center;
+    font-size: 16px;
+    color: #d25d51;
+}
+
+/* img */
+
+.repertory_content_img {
+    width: 90%;
+    padding-left: 5%;
+}
+
+.repertory_content_img img {
+    width: 100%;
+}
+
+/* duration */
+
+.repertory_content_duration {
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
+    color: #4b4b4b;
+    justify-content: center;
+    padding: 16px 0 5px 0;
+}
+
+.repertory_content_duration a {
+    padding-right: 2%;
+}
+
+/* price */
+
+.repertory_content_price {
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
+    color: #4b4b4b;
+    justify-content: center;
+}
+
+.repertory_content_price a {
+    padding-right: 2%;
+    width: 90px;
+}
+
+/* button */
+
+.repertory_content_button {
+    display: flex;
+    justify-content: center;
+    padding: 16px 0 10px 0;
+    font-size: 18px;
+}
+
+.repertory_content_button a {
+    text-decoration: none;
+}
+
+.repertory_content_button_inside {
+    width: 120px;
+    height: 26px;
+    padding-top: 2px;
+    background-color: rgb(169, 42, 6);
+    color: white;
+    font-family: "Calibri Light", sans-serif;
+    text-decoration: none;
+}
+
+.repertory_content_button_inside:hover {
+    background-color: rgb(155, 42, 6);
+}
+
+@media all and (max-width: 1060px) {
+    .repertory_content_duration {
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+        color: #4b4b4b;
+        justify-content: center;
+        padding: 10px 0 5px 0;
+    }
+
+    .repertory_content_duration a {
+        padding-right: 2%;
+    }
+}
+
+#table_content {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-family: Myriad Pro, sans-serif;
+    width: 100%;
+    top: 12%;
+    box-shadow:2px 3px 18px 5px rgba(23,23,23,0.33);
+    -webkit-box-shadow:2px 3px 18px 5px rgba(23,23,23,0.33);
+    -moz-box-shadow:2px 3px 18px 5px rgba(23,23,23,0.33);
+    background-color: #ffffff;
+}
+
+#table_head {
+    display: flex;
+    flex-direction: row;
+    background-color: #737373;
+    height: 40px;
+    align-items: center;
+    z-index: 1;
+}
+
+.table_head_title a {
+    font-size: 20px;
+    color: #ebebeb;
+    font-family: "Calibri Light", sans-serif;
+}
+
+#table_head_left {
+    width: 10%;
+}
+
+#table_head_name {
+    width: 30%;
+}
+
+#table_head_date {
+    width: 16%;
+}
+
+#table_head_time {
+    width: 8%;
+}
+
+#table_head_length {
+    width: 16%;
+}
+
+#table_head_price {
+    width: 8%;
+}
+
+#table_head_right {
+    width: calc(12% + 18px);
+}
+
+.table_info {
+    padding: 5px 0;
+    display: flex;
+    flex-direction: row;
+    color: #4b4b4b;
+    font-family: Myriad Pro, sans-serif;
+    font-size: 17px;
+}
+
+.table_info_border {
+    margin: 0 4%;
+    border-bottom: 1px solid rgba(155, 155, 155, 0.5);
+}
+
+#table_content2 {
+    height: 400px;
+    overflow-y: scroll;
+    
+}
+
+.table_info_img {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table_info_img img {
+    width: 64px;
+    border-radius: 10px;
+}
+
+.table_info_name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+}
+
+.table_info_date {
+    width: 16%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table_info_time {
+    width: 8%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table_info_length {
+    width: 16%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table_info_price {
+    width: 8%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table_info_button {
+    width: 12%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table_info_button a {
+    width: 80px;
+    height: 30px;
+    background-color: rgb(169, 42, 6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #f0f0f0;
+}
+
+.table_info_button a:hover {
+    background-color: rgb(155, 42, 6);
+}
+
+
+
+
+
+
+
+
+

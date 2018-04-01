@@ -1,0 +1,56 @@
+@font-face {
+    font-family: 'SF-UI-Display-Medium';
+    src: url('fonts/SF-UI-Display-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SFUIDisplay-Light';
+    src: url('fonts/SFUIDisplay-Light.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SFUIDisplay-Regular';
+    src: url('fonts/SFUIDisplay-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SFUIDisplay-Thin';
+    src: url('fonts/SFUIDisplay-Thin.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SFUIDisplay-Ultralight';
+    src: url('fonts/SFUIDisplay-Ultralight.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MyriadPro-Regular';
+    src: url('fonts/MyriadPro-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Myriad_Pro_Light_Cond_Regular';
+    src: url('fonts/Myriad_Pro_Light_Cond_Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MyriadPro-Cond';
+    src: url('fonts/MyriadPro-Cond.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MyriadPro-It';
+    src: url('fonts/MyriadPro-It.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
