@@ -63,7 +63,7 @@ function Shuttle({ images = [], month = [], text = [], id_slider1 = [], date = [
                 {
                     images.map((src, index) =>
                         <div id={"slider_img_"+[index]} key={"slider_img_" + [index]}>
-                            <img key={"slider_img_cont" + [index]} alt="img" className="slider__image" src={src} />
+                            <img key={"slider_img_cont" + [index]} alt="img" height= "300 px" className="slider__image" src={src} />
                         </div>
                     )
                 }
@@ -174,9 +174,35 @@ class Slider extends Component {
     */
     componentWillUnmount() {
 		
-        clearTimeout(this.timeoutId)
+    clearTimeout(this.timeoutId);
     }
 
+	componentDidMount() {
+		fetch(`/api.php?mode=slaider_session`)
+			.then((data) =>{
+				return data.json();})				
+					.then((user) => {
+						let arr = user.data.map(function(i){return i});
+						console.log(arr);
+						this.setState ({
+						text : arr.map(function(i){return i.name}),
+						description : arr.map(function(i){return i.description}),
+						images : arr.map(function(i){return i.photo}),
+						date : arr.map(function(i){ let  k =  i.date.split (' '); return k[0]}),
+						month : arr.map(function(i){ let  k =  i.date.split (' '); return k[1]}),
+						id_slider1 : arr.map(function(i){return i.id_session}),});
+
+						console.log(text);
+						console.log(description);
+						console.log(images);
+						console.log(date);
+						console.log(id_slider1);
+						console.log(response.status);
+						
+						})
+							.catch((err) => {});
+  
+    }
 	
     /*
         Start the slider animating.
@@ -297,7 +323,7 @@ class Slider extends Component {
         }
            */
         let timerId;
-        let Slider_auto = ({ isHovering = false }) => (
+        let Slider_auto = ({ isHovering = false }) => ( 
             <div id="Slider_hover_null">
                 {
                     isHovering ?
@@ -327,14 +353,54 @@ class Slider extends Component {
 	This is a HOC (Higher-Order Component) that'll give the passed component a
 	default data source via the `images` prop.
 */
+// function request(){
+		// fetch(`/api.php?mode=slaider_news`)
+			// .then((data) =>{
+				// return data.json();})				
+					// .then((user) => {
+						// let arr = user.data.map(function(i){return i});
+						// return arr;
+						// })
+							// .catch((err) => {});
+// }
+							
 function withTestImages(WrappedComponent) {
-    let images = [
+	// let images;
+	// let text;
+	// let description;
+	// let date;
+	// let id_slider1;
+	// let rez = 0;
+	// fetch(`/api.php?mode=slaider_news`)
+			// .then((data) =>{
+				// return data.json();})				
+					// .then((user) => {
+						// let arr = user.data.map(function(i){return i});
+						// console.log(arr);
+						// text = arr.map(function(i){return i.name});
+						// description = arr.map(function(i){return i.description});
+						// images = arr.map(function(i){return i.photos});
+						// date = arr.map(function(i){return i.date});
+						// id_slider1 = arr.map(function(i){return i.id_news});
+						// rez = 1;
+						// console.log(text);
+						// console.log(description);
+						// console.log(images);
+						// console.log(date);
+						// console.log(id_slider1);
+						// console.log(response.status);
+						
+						// })
+							// .catch((err) => {});
+	// console.log(response.status);
+    let images = 
+	[
         'http://oi45.tinypic.com/1zh193q.jpg',
         'http://thisisgalway.ie/wp-content/uploads/2016/10/the-voyage-babaro-1000-1.jpg',
         'http://kinezis4you.com/wp-content/uploads/2015/04/MEDITATION-PRACTICE_1000_400.jpg',
         'http://www.discoveryourcity.com.au/wp-content/uploads/cache/images/Melbourne_Skyline_and_Princes_Bridge_-_Dec_2008/Melbourne_Skyline_and_Princes_Bridge_-_Dec_2008-400529269.jpg',
     ];
-
+	
     let date = [
         '10',
         '11',
@@ -368,8 +434,9 @@ function withTestImages(WrappedComponent) {
     // Pass any props it receives on to the WrappedComponent
     // This makes this wrapper component invisible to consumers.
     // Passing {...props} last allows consumers to override the `images` prop.
-    let Wrapper = props => <WrappedComponent images={images} month={month} text={text} date={date} id_slider1={id_slider1} {...props} />;
 
+    let Wrapper = props => <WrappedComponent images={images} month={month} text={text} date={date} id_slider1={id_slider1} {...props} />;
+	
     // A convention. The name of a wrapper component returned from a HOC is
     // "<capitalized name of HOC>(<name of wrapped component>)"
     // This is for your own sake when using the React developer tools
@@ -395,7 +462,7 @@ render(
 );
 
 // export {id};
-export {TestSlider};
+// export default TestSlider;
 
 /* -------------------------------------------------------- */
 
