@@ -3,10 +3,10 @@ import {render} from 'react-dom'
 import './index.css';
 import ReactHoverObserver from 'react-hover-observer';
 
+
+let test = window.screen.height;
 const LEFT = 'left';
 const RIGHT = 'right';
-let id;
-
 
 // Just a common utility function to get the display name of a component
 // so we can make the React developer tools more useful.
@@ -35,7 +35,6 @@ function Control({ isRight = false, slide }) {
 }
 
 
-
 /*
 	Just a separate component for the element that actually animates
 	and brings the images with it.
@@ -44,6 +43,9 @@ function Control({ isRight = false, slide }) {
 	slideDirection - string - optional - if the slider is currently in a sliding state,
 		pass the direction that corresponds to the CSS class that handles the animation.
 */
+
+
+
 function Shuttle({ images = [], month = [], text = [], id_slider1 = [], date = [], slideDirection, slideDirection2 }) {
     let shuttleClass = 'slider__shuttle';
 
@@ -62,8 +64,8 @@ function Shuttle({ images = [], month = [], text = [], id_slider1 = [], date = [
             <div className={shuttleClass} id="slider_img_cont">
                 {
                     images.map((src, index) =>
-                        <div id={"slider_img_"+[index]} key={"slider_img_" + [index]}>
-                            <img key={"slider_img_cont" + [index]} alt="img" className="slider__image" src={src} />
+                        <div id={"slider_img_"+[index]} className="slider_img_class" key={"slider_img_" + [index]} style={{backgroundImage: "url(" + src + ")", height:(test/3) + 'px'}}>
+                            
                         </div>
                     )
                 }
@@ -102,12 +104,10 @@ function Shuttle({ images = [], month = [], text = [], id_slider1 = [], date = [
                         {    /* Button */
                             id_slider1.map((id_slider1, index) =>
                                 <div className="slide_but_width" key={"slide_but_width_" + [index]}>
-                                <a href = {`/newpage.html?id=${id_slider1[index]}`}  key={"slide_but_" + [index]}>
+                                <a href="#" key={"slide_but_" + [index]}>
                                     <div key={"slide_button_" + [index]} id={"slide_button_"+[index]} >
                                         <u>Подробнее</u>
-                                        <b>{id = id_slider1[index]}</b>
-										
-										
+                                        
                                     </div>
                                 </a>
                                 </div>
@@ -120,6 +120,7 @@ function Shuttle({ images = [], month = [], text = [], id_slider1 = [], date = [
         </div>
     )
 }
+
 
 
 /*
@@ -173,11 +174,10 @@ class Slider extends Component {
         unmounted during animation.
     */
     componentWillUnmount() {
-		
         clearTimeout(this.timeoutId)
     }
 
-	
+
     /*
         Start the slider animating.
         This just changes the state of the slider and sets up a timeout that'll undo that state change.
@@ -329,10 +329,10 @@ class Slider extends Component {
 */
 function withTestImages(WrappedComponent) {
     let images = [
-        'http://oi45.tinypic.com/1zh193q.jpg',
+        'http://fullhdwallpapers.ru/image/nature/4051/magicheskie-gory.jpg',
         'http://thisisgalway.ie/wp-content/uploads/2016/10/the-voyage-babaro-1000-1.jpg',
-        'http://kinezis4you.com/wp-content/uploads/2015/04/MEDITATION-PRACTICE_1000_400.jpg',
-        'http://www.discoveryourcity.com.au/wp-content/uploads/cache/images/Melbourne_Skyline_and_Princes_Bridge_-_Dec_2008/Melbourne_Skyline_and_Princes_Bridge_-_Dec_2008-400529269.jpg',
+        'http://wallpaperscraft.ru/image/leto_reka_priroda_trava_84576_2560x1600.jpg',
+        'https://get.wallhere.com/photo/trees-forest-mountains-lake-water-nature-reflection-snow-Canada-valley-pine-trees-wilderness-Banff-National-Park-Moraine-Lake-mountain-season-mountainous-landforms-mountain-range-218637.jpg',
     ];
 
     let date = [
@@ -377,7 +377,6 @@ function withTestImages(WrappedComponent) {
     Wrapper.displayName = `WithTestImages(${getDisplayName(WrappedComponent)})`;
 
     return Wrapper
-	
 }
 
 
@@ -394,8 +393,7 @@ render(
     document.getElementById('root_1')
 );
 
-// export {id};
-export {TestSlider};
+
 
 /* -------------------------------------------------------- */
 
