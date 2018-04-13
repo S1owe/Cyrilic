@@ -3,7 +3,9 @@ const path = require("path");
 module.exports = {
   entry:
   {app1 : './src/index.js',
-  app2 :'./src/news.js', } , 
+  app2 :'./src/news.js',
+  app3 :'./src/booking-index.js',
+  } , 
   output: 
   {
     filename: '[name].js',
@@ -35,6 +37,20 @@ module.exports = {
 			{
 				loader: 'css-loader',
 			}]
+		},
+		{
+			test: /\.(jpg)$/,
+			use: 
+			[{
+				loader: 'url-loader',
+			},]
+		},
+		{
+			test: /\.(png)$/,
+			use: 
+			[{
+				loader: 'url-loader',
+			},]
 		},
 		{
           test: /\.ttf$/,
