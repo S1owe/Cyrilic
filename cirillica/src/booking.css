@@ -1,0 +1,21 @@
+@font-face{
+    font-family:SF-UI-Display-Medium;
+    src: url("fonts/SF-UI-Display-Medium.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* #booking */
+/* { */
+	/* display: flex; */
+	/* position: relative; */
+/* } */
+
+
+#head
+{
+	display: flex;
+
+
+}

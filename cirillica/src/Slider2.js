@@ -165,6 +165,33 @@ class Slider extends Component {
     componentWillUnmount() {
         clearTimeout(this.timeoutId)
     }
+	
+	componentDidMount() {
+		fetch(`/api.php?mode=slaider_news`)
+			.then((data) =>{
+				return data.json();})				
+					.then((user) => {
+						let arr = user.data.map(function(i){return i});
+						console.log(arr);
+						this.setState ({
+						title : arr.map(function(i){return i.name}),
+						text : arr.map(function(i){return i.description}),
+						images : arr.map(function(i){return i.photos}),
+						// date : arr.map(function(i){ let  k =  i.date.split (' '); return k[0]}),
+						// month : arr.map(function(i){ let  k =  i.date.split (' '); return k[1]}),
+						button : arr.map(function(i){return `/newpage.html?id=${i.id_news}`}),});
+
+						// console.log(text);
+						// console.log(description);
+						// console.log(images);
+						// console.log(date);
+						// console.log(id_slider1);
+						// console.log(response.status);
+						
+						})
+							.catch((err) => {});
+  
+    }
 
 
     /*

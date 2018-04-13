@@ -20,7 +20,7 @@ class Slider extends React.Component {
         this.state = {
             index: 0,
             count: props.count,
-            lastIndex: Math.ceil(props.children.length / props.count) - 1,
+            lastIndex: 1,
             interval: null
         };
         this.handleKeys();
@@ -28,7 +28,7 @@ class Slider extends React.Component {
         this.autoPlay();
     }
 
-    autoPlay = () => {
+    autoPlay  ()  {
         if(this.props.autoPlay) {
             this.interval = setInterval(() => {
                 this.nextSlide();
@@ -36,13 +36,13 @@ class Slider extends React.Component {
         }
     };
 
-    stopAutoPlay = () => {
+    stopAutoPlay  ()  {
         if(this.props.autoPlay && this.props.pauseOnMouseOver) {
             clearInterval(this.interval);
         }
-    }
+    };
 
-    handleKeys = () => {
+    handleKeys  ()  {
         document.addEventListener('keydown', (event) => {
             const key = event.keyCode;
             switch(key) {
@@ -54,33 +54,33 @@ class Slider extends React.Component {
         });
     };
 
-    previousSlide = () => {
+    previousSlide  ()  {
         let index = this.state.index;
         index--;
         if(index === -1) index = this.state.lastIndex;
         this.setSlide(index);
     };
 
-    nextSlide = () => {
+    nextSlide  ()  {
         let index = this.state.index;
         if(index === this.state.lastIndex) index = 0;
         else index++;
         this.setSlide(index);
     };
 
-    setSlide = (i) => {
+    setSlide (i)  {
         this.setState({
             index: i
         });
     };
 
-    getSlides = () => {
+    getSlides  ()  {
         const { children } = this.props;
         let slides = [];
         let i = 0;
         while(i < children.length) {
             let slideItems = [];
-            for(var j = 0; j < this.state.count && i < children.length; j++) {
+            for(let j = 0; j < this.state.count && i < children.length; j++) {
                 let slideItem = (
                     <section key={i} className="slider-item">
                         {children[i]}
@@ -98,7 +98,25 @@ class Slider extends React.Component {
         }
         return slides;
     };
+	componentWillMount() {
 
+		fetch(`/api.php?mode=repertoire`)
+			.then((data) =>{
+				return data.json();})				
+					.then((user) => {
+						let arr1 = user.data.map(function(i){return i});
+						console.log(parseInt(arr1.length/4,10));
+						
+						this.setState ({
+							
+							lastIndex : parseInt(arr1.length/4,10)
+
+						});	
+
+						})
+							.catch((err) => {});
+  
+    }
 
     render() {
         const { index } = this.state;
@@ -241,9 +259,9 @@ class App extends React.Component {
                     button: "https://yandex.ru/pogoda/penza?from=serp_title"
                 },
                 {
-                    title: "Наедине со всеми",
+                    name: "Наедине со всеми",
                     title_href: "#4",
-                    image: "https://mysplash.ru/uploads/afisha/r0/sg/6d178848c78214c90682bc6d5835222d-600x600.jpg",
+                    photos: "https://mysplash.ru/uploads/afisha/r0/sg/6d178848c78214c90682bc6d5835222d-600x600.jpg",
                     duration: "1 ч 20 мин",
                     price: "150 руб.",
                     button: "https://www.gismeteo.ru/"
@@ -252,6 +270,30 @@ class App extends React.Component {
             ]
         };
     }
+	componentWillMount() {
+		fetch(`/api.php?mode=repertoire`)
+			.then((data) =>{
+				return data.json();})				
+					.then((user) => {
+						let arr = user.data.map(function(i){return i});
+						console.log(arr);
+						this.setState ({
+							items: arr,
+							// lastIndex : arr.length,
+						// title : arr.map(function(i){return i.name}),
+						// text : arr.map(function(i){return i.description}),
+						// images : arr.map(function(i){return i.photos}),
+						// date : arr.map(function(i){ let  k =  i.date.split (' '); return k[0]}),
+						// month : arr.map(function(i){ let  k =  i.date.split (' '); return k[1]}),
+						// button : arr.map(function(i){return `/newpage.html?id=${i.id_news}`}),
+						});
+
+
+						
+						})
+							.catch((err) => {});
+	}
+    
 
     render() {
         const SlideSettings = {
@@ -270,13 +312,13 @@ class App extends React.Component {
                                 <div className={"repertory_content_" + [index%2]}>
 
                                     <div className={"repertory_content_title"}>
-                                        <a href={item.title_href}>{item.title}</a>
+                                        <a href={item.title_href}>{item.name}</a>
                                     </div>
 
                                     <div className={"repertory_content_img"}>
                                         <a href={item.title_href}>
                                             <div key={"repertory_content_img_" + [index]} alt="img" className="repertory_content_img_image">
-                                                <div key={"repertory_content_img_" + [index]} alt="img" className="repertory_content_img_image_all" style={{backgroundImage: "url(" + item.image + ")", height:(test/5) + 'px'}} />
+                                                <div key={"repertory_content_img_" + [index]} alt="img" className="repertory_content_img_image_all" style={{backgroundImage: "url(" + item.photos + ")", height:(test/5) + 'px'}} />
                                             </div>
 
                                         </a>
@@ -343,7 +385,26 @@ class Content extends Component {
     }
 
 
-
+	componentDidMount() {
+		fetch(`/api.php?mode=sessions`)
+			.then((data) =>{console.log(data);
+				return data.json();})				
+					.then((user) => {console.log(user);
+						let arr2 = user.data.map(function(i){return i});
+						console.log(arr2);
+						console.log("asdf");
+						this.setState ({
+						table_name : arr2.map(function(i){return i.name}),
+						table_price: arr2.map(function(i){return i.prices}),
+						table_time: arr2.map(function(i){return i.time}),
+						table_length: arr2.map(function(i){return i.timing}),
+						table_img : arr2.map(function(i){return i.photos}),
+						table_date : arr2.map(function(i){ return i.date}),
+						});						
+						})
+							.catch((err) => {});
+  
+    }
 
     right_button() {
         // check if box is currently opened
