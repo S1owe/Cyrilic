@@ -28,7 +28,7 @@ class Slider extends React.Component {
         this.autoPlay();
     }
 
-    autoPlay  ()  {
+    autoPlay  = () => {
         if(this.props.autoPlay) {
             this.interval = setInterval(() => {
                 this.nextSlide();
@@ -36,13 +36,13 @@ class Slider extends React.Component {
         }
     };
 
-    stopAutoPlay  ()  {
+    stopAutoPlay  = () =>  {
         if(this.props.autoPlay && this.props.pauseOnMouseOver) {
             clearInterval(this.interval);
         }
     };
 
-    handleKeys  ()  {
+    handleKeys  = () =>  {
         document.addEventListener('keydown', (event) => {
             const key = event.keyCode;
             switch(key) {
@@ -54,27 +54,27 @@ class Slider extends React.Component {
         });
     };
 
-    previousSlide  ()  {
+    previousSlide  = () =>  {
         let index = this.state.index;
         index--;
         if(index === -1) index = this.state.lastIndex;
         this.setSlide(index);
     };
 
-    nextSlide  ()  {
+    nextSlide  = () =>  {
         let index = this.state.index;
         if(index === this.state.lastIndex) index = 0;
         else index++;
         this.setSlide(index);
     };
 
-    setSlide (i)  {
+    setSlide =  (i) =>  {
         this.setState({
             index: i
         });
     };
 
-    getSlides  ()  {
+    getSlides  = () =>  {
         const { children } = this.props;
         let slides = [];
         let i = 0;
