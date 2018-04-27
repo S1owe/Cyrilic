@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Кириллица</title>
+    <!--<link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="css/body.css" />
+    <link rel="stylesheet" href="css/style_form.css"/>
+    <link rel="stylesheet" href="css/fonts.css" />
+    <link rel="shortcut icon" href="img/logo2.jpg" type="image/x-icon">
+</head>
+
+<body>
+    <div class="body">
+        <!-----------HEADER----------->
+        <header>
+            <div class="input">
+                <a href="signup.html" class="registration" target="_self">Регистрация</a>
+                <a href="input.html" class="button" target="_self">Войти</a>
+            </div>
+            <!-----------NAVBAR----------->
+            <nav>
+                <div class="topnav" id="Topnav">
+                    <a href="#about" class="menu" target="_self">О театре</a>
+                    <a href="#" class="menu" target="_self">Новости</a>
+                    <a href="#" class="menu" target="_self">Афиша</a>
+                    <a href="index.html" class="logo" target="_self"><img class="graficlogo" src="img/logo2.jpg" alt="Logo"></a>
+                    <a href="#" class="menu" target="_self">Люди театра</a>
+                    <a href="#" class="menu" target="_self">Контакты</a>
+                    <a href="#" class="menu" target="_self">Фотогалерея</a>
+                </div>
+            </nav>
+            <!-----------NAVBAR----------->
+        </header>
+        <!-----------END HEADER----------->
+        <div class="container" > <!--id="container"-->
+           <div class="title_text">
+               <p>Для оформления заказа Вам нужно войти.</p>
+               <p>Если у Вас нет аккаунта, 
+                   <a href="signup.html">зарегистрируйтесь.</a> 
+               </p>
+               
+           </div>
+            <div id="input">
+                <form id="modal_form" method="post" name="modal_form">
+                <!--action="/login"-->
+                    <div class="modal_form_group">
+                        <p class="heading">Вход</p>
+                        <p class="heading_3">в личный кабинет</p>
+                   </div>
+                    <div class="modal_form_group">
+                        <label for="login-email">Почта</label><br/>
+                        <input type="email" name="login-email" value="" id="login-email">
+                    </div>
+                    <div class="modal_form_group">
+                        <label for="login-password">Пароль</label><br/>
+                        <input type="password" name="login-password" id="login-password">
+                    </div>
+                    <div class="modal_form_group">
+                       <p class="modal_forgot-password">
+                            <a href="#">Забыли пароль?</a>
+                        </p>
+                    </div>
+                    <div class="modal_form_group">
+                        <input class="button" type="submit" value="Войти">
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+        <!-----------FOOTER----------->
+        <footer>
+            <p class="heading">Контакты</p>
+            <div class="footer_container">
+                <div class="section bottomnav">
+                    <a href="#" class="mini-menu" target="_self">Навигация</a>
+                    <a href="#" class="mini-menu" target="_self">Расписание</a>
+                    <a href="#" class="mini-menu" target="_self">О театре</a>
+                    <a href="#" class="mini-menu" target="_self">Люди театра</a>
+                    <a href="#" class="mini-menu" target="_self">Фотогалерея</a>
+                </div>
+                <div class="section contacts">
+                    <span>
+                        <p>Телефон: <strong>+7(953)020-20-17</strong></p>
+                        <p>Оффициальная группа: <strong>VK.com</strong></p>
+                        <p> Почта:  <strong>Teatrkirillica@gmail.com</strong></p>
+                    </span>
+                </div>
+                <div class="section respond">
+                    <!-----------Commentform----------->
+                    <form id="commentform" method="post" name="commentform">
+                        <!--action="#" -->
+                        <span>
+                           <label for="email"><small>E-mail</small></label><br/>
+                           <input type="text" name="email" id="email" value="" size="25" tabindex="2" aria-required="true">
+                       </span>
+                        <span>
+                            <label for="comment"><small>Вопросы и пожелания</small></label><br/>
+                            <textarea name="comment" id="comment" rows="4" tabindex="7";></textarea>
+                        </span>
+                        <span>
+                            <input name="submit" type="submit" id="submit" tabindex="5" value="Отправить">
+                            <!--<input type="hidden" name="comment_post_ID" value="10" id="comment_post_ID">
+                            <input type="hidden" name="comment_parent" id="comment_parent" value="0">-->
+                        </span>
+                    </form>
+                    <!-----------END Commentform----------->
+                </div>
+            </div>
+            <p class="copyright">Центр проектого творчества - 2018. Все права защищены. | Правило преобретения билетов </p>
+        </footer>
+        <!-----------END FOOTER----------->
+    </div>
+</body>
+
+</html>
