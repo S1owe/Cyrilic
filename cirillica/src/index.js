@@ -1,10 +1,12 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
 import './Slider1'
-// import './Slider2'
-// import './list_of_productions'
-import TestSlider from './Slider1'
-// import New from './New'
+import './Slider2'
+import './list_of_productions'
+import Head from './header'
+import Footer from './footer'
 
-ReactDOM.render(<TestSlider />, document.getElementById('root_1'));
-// ReactDOM.render(<New />, document.getElementById('new'));
-
+ReactDOM.render(<Head />, document.getElementById('head'));
+ReactDOM.render(<Footer />, document.getElementById('footer'));
 

@@ -22,12 +22,7 @@
     font-weight: normal;
     font-style: normal;
 }
-@font-face {
-    font-family: 'SFUIDisplay-Ultralight';
-    src: url('fonts/SFUIDisplay-Ultralight.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-}
+
 @font-face {
     font-family: 'MyriadPro-Regular';
     src: url('fonts/MyriadPro-Regular.otf') format('opentype');
@@ -46,11 +41,6 @@
     font-weight: normal;
     font-style: normal;
 }
-@font-face {
-    font-family: 'MyriadPro-It';
-    src: url('fonts/MyriadPro-It.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-}
+
 
 

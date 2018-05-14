@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
-import './index.css';
-import ReactHoverObserver from 'react-hover-observer';
 
+import ReactHoverObserver from 'react-hover-observer';
+let test = window.screen.height;
 const LEFT = 'left';
 const RIGHT = 'right';
 
@@ -64,8 +64,7 @@ function Shuttle({ images = [], title = [], text = [], button = [], slideDirecti
             <div className={shuttleClass} id="slider-2_img_cont">
                 {
                     images.map((src, index) =>
-                        <div id={"slider-2_img_"+[index]} key={"slider-2_img_" + [index]}>
-                            <img key={"slider-2_img_cont" + [index]} alt="img" className="slider-2__image" src={src} />
+                        <div id={"slider-2_img_"+[index]} key={"slider-2_img_" + [index]} className="slider_img_class_2" style={{backgroundImage: "url(" + src + ")", height:(test/4) + 'px'}}>
                         </div>
                     )
                 }
@@ -167,6 +166,33 @@ class Slider extends Component {
         clearTimeout(this.timeoutId)
     }
 
+	componentDidMount() {
+		fetch(`/api.php?mode=slaider_news`)
+			.then((data) =>{
+				return data.json();})				
+					.then((user) => {
+						let arr = user.data.map(function(i){return i});
+						console.log(arr);
+						this.setState ({
+						title : arr.map(function(i){return i.name}),
+						text : arr.map(function(i){return i.description}),
+						images : arr.map(function(i){return i.photos}),
+						// date : arr.map(function(i){ let  k =  i.date.split (' '); return k[0]}),
+						// month : arr.map(function(i){ let  k =  i.date.split (' '); return k[1]}),
+						button : arr.map(function(i){return `/newpage.html?id=${i.id_news}`}),});
+
+						// console.log(text);
+						// console.log(description);
+						// console.log(images);
+						// console.log(date);
+						// console.log(id_slider1);
+						// console.log(response.status);
+						
+						})
+							.catch((err) => {});
+  
+    }
+
 
     /*
         Start the slider animating.
@@ -253,6 +279,8 @@ class Slider extends Component {
     render() {
         let { images, text, title, button, slideDirection, slideDirection2 } = this.state;
 
+
+        
         let timerId;
         let Slider_auto = ({ isHovering = false }) => (
             <div id="Slider-2_hover_null">
@@ -289,41 +317,21 @@ class Slider extends Component {
 */
 function withTestImages(WrappedComponent) {
     let images = [
-        'https://oboi.ws/wallpapers/12_9676_oboi_igrushechnyj_gorod_ognej_1024x768.jpg',
-        'http://www.anypics.ru/pic/201602/1024x768/anypics.ru-93129.jpg',
-        'https://www.tomswallpapers.com/pic/201503/1024x768/tomswallpapers.com-26765.jpg',
-        'http://www.ruseducation.in/img/smolesnk%20city.jpg'
+
     ];
 
 
     let title = [
-        'Заголовок новости №1',
-        'Заголовок новости №2',
-        'Заголовок новости №3',
-        'Заголовок новости №4',
+
     ];
 
     let text = [
-        'Товарищи! консультация с широким активом позволяет выполнять важные задания по разработке систем массового участия.\n' +
-        "\n" +
-        'Разнообразный и богатый опыт консультация с широким активом обеспечивает широкому кругу.',
 
-        'Не следует, однако забывать, что дальнейшее развитие различных форм деятельности способствует подготовки и реализации форм развития.\n' +
-        'Таким образом реализация намеченных плановых заданий позволяет оценить значение новых предложений.',
-
-        'Равным образом постоянный количественный рост и сфера нашей активности играет важную роль в формировании системы обучения кадров, соответствует насущным потребностям.\n' +
-        'Значимость этих проблем настолько очевидна, что консультация с широким активом играет важную роль.',
-
-        'Равным образом рамки и место обучения кадров влечет за собой процесс внедрения и модернизации системы обучения кадров, соответствует насущным потребностям.\n' +
-        'Равным образом постоянный количественный рост и сфера нашей активности играет важную роль в формировании системы обучения кадров.',
     ];
 
 
     let button = [
-        'https://www.yandex.ru/',
-        'https://www.google.ru/',
-        'https://yandex.ru/pogoda/penza?from=serp_title',
-        'https://www.gismeteo.ru/',
+
     ];
 
     // Return a new, wrapper component
@@ -344,7 +352,6 @@ function withTestImages(WrappedComponent) {
 
 // Create the data-wrapped component that we'll actually use for our test.
 const TestSlider = withTestImages(Slider);
-
 
 
 // Get this party started.

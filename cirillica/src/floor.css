@@ -1,0 +1,211 @@
+@font-face{
+    font-family:SF-UI-Display-Medium;
+    src: url("fonts/SF-UI-Display-Medium.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.floor {
+    width: 450px;
+    height: 100%;
+    background: #f8f8f8;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+#floor4{
+    margin-left: 15%;
+    width: 170px;
+    display: flex;
+    hight: auto;
+    top: 8%;
+    position: absolute;
+    left:100%;
+    right: 0%;
+}
+#floor6{
+    margin-left: 15%;
+    width: 170px;
+    display: flex;
+    top: 0%;
+    hight: auto;
+    position: absolute;
+    left:100%;
+    right: 0%;
+}
+#floor5{
+    margin-left: 15%;
+    width: 170px;
+    display: flex;
+    bottom: 0;
+    hight: auto;
+    position: absolute;
+    left:100%;
+    right: 0%;
+}
+.floor2 {
+
+    height: 100%;
+    width: 100%;
+    background: #f8f8f8;
+    display: flex;
+    font-family: Myriad Pro;
+    font-size: 15px;
+}
+.floor3 {
+
+    height: 100%;
+    background: #f8f8f8;
+    display: flex;
+    flex-direction: column;
+}
+.chair {
+    width: calc(calc(450px/15) - 2px);
+    height: calc(calc(210px/7) - 2px);
+    border: 1px solid #f8f8f8;
+    cursor: pointer;
+    background: #f8f8f8;
+}
+
+.chair.buyed {
+    width: calc(calc(450px/15) - 2px);
+    height: calc(calc(210px/7) - 2px);
+    border: 1px solid #f8f8f8;
+    cursor: pointer;
+    background:  #373737;
+ }
+.chair.changed {
+    width: calc(calc(450px/15) - 2px);
+    height: calc(calc(210px/7) - 2px);
+    border: 1px solid #f8f8f8;
+    cursor: pointer;
+    background: #828282;
+}
+.chair.free {
+    width: calc(calc(450px/15) - 2px);
+    height: calc(calc(210px/7) - 2px);
+    border: 1px solid #f8f8f8;
+    cursor: pointer;
+    background: #138da2;
+}
+.chair.empty {
+    width: calc(calc(450px/15) - 2px);
+    height: calc(calc(210px/7) - 2px);
+    border: 1px solid #f8f8f8;
+    cursor: pointer;
+    color: transparent;
+}
+.chair.paid {
+    width: calc(calc(450px/15) - 2px);
+    height: calc(calc(210px/7) - 2px);
+    border: 1px solid #f8f8f8;
+    cursor: pointer;
+    background: #a28149;
+}
+.chair:hover {
+    opacity: 0.8;
+}
+.chair.price1 {
+    width: calc(calc(450px/15) - 2px);
+    height: calc(calc(210px/7) - 2px);
+    border: 1px solid #f8f8f8;
+    cursor: pointer;
+    background: #32CD32;
+}
+.chair.price2 {
+    width: calc(calc(450px/15) - 2px);
+    height: calc(calc(210px/7) - 2px);
+    border: 1px solid #f8f8f8;
+    cursor: pointer;
+    background: #D2691E;
+}
+.chair.price3 {
+    width: calc(calc(450px/15) - 2px);
+    height: calc(calc(210px/7) - 2px);
+    border: 1px solid #f8f8f8;
+    cursor: pointer;
+    background: #1968eb;
+}
+.chair.price4 {
+    width: calc(calc(450px/15) - 2px);
+    height: calc(calc(210px/7) - 2px);
+    border: 1px solid #f8f8f8;
+    cursor: pointer;
+    background: #b8d761;
+}
+.chair.price5{
+    width: calc(calc(450px/15) - 2px);
+    height: calc(calc(210px/7) - 2px);
+    border: 1px solid #f8f8f8;
+    cursor: pointer;
+    background:  #9400D3;
+}
+.chair.scene{
+    background: black;
+    width: 100%;
+    height: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+    .floor {
+        width: 300px;
+        height: 100%;
+        background: #f8f8f8;
+        display: flex;
+        flex-wrap: wrap;
+
+    }
+    #floor4{
+        margin-left: 25%;
+        width: 95px;
+        display: flex;
+        hight: auto;
+        top: 8%;
+        position: absolute;
+        left:100%;
+        right: 0%;
+    }
+    #floor6{
+        margin-left: 25%;
+        width: 170px;
+        display: flex;
+        top: 0%;
+        hight: auto;
+        position: absolute;
+        left:100%;
+        right: 0%;
+    }
+    #floor5{
+        margin-left: 25%;
+        width: 170px;
+        display: flex;
+        bottom: 0;
+        hight: auto;
+        position: absolute;
+        left:100%;
+        right: 0%;
+    }
+    .floor2 {
+
+        height: 100%;
+        width: 100%;
+        background: #f8f8f8;
+        display: flex;
+        font-family: Myriad Pro;
+        font-size: 15px;
+    }
+    .floor3 {
+
+        height: 100%;
+        background: #f8f8f8;
+        display: flex;
+        flex-direction: column;
+    }
+    .chair {
+        width: calc(calc(300px/15) - 2px);
+        height: calc(calc(140px/7) - 2px);
+        background: #f8f8f8;
+        border: 1px solid #f8f8f8;
+        cursor: pointer;
+    }
+}

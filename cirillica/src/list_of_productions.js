@@ -6,17 +6,367 @@ function getDisplayName(Component) {
     return Component.displayName || Component.name || 'Component'
 }
 
-class Slider extends Component {
+
+
+
+let test = window.screen.height;
+
+console.clear();
+
+class Slider extends React.Component {
+
     constructor(props) {
         super(props);
-        
-        let { date } = props;
-        let { button } = props;
-        let { time } = props;
-        let { title } = props;
-        let { img } = props;
-        let { duration } = props;
-        let { price } = props;
+        this.state = {
+            index: 0,
+            count: props.count,
+            lastIndex: 1,
+            interval: null
+        };
+        this.handleKeys();
+        this.interval = false;
+        this.autoPlay();
+    }
+
+    autoPlay  = () => {
+        if(this.props.autoPlay) {
+            this.interval = setInterval(() => {
+                this.nextSlide();
+            }, this.props.timeToSlide);
+        }
+    };
+
+    stopAutoPlay  = () =>  {
+        if(this.props.autoPlay && this.props.pauseOnMouseOver) {
+            clearInterval(this.interval);
+        }
+    };
+
+    handleKeys  = () =>  {
+        document.addEventListener('keydown', (event) => {
+            const key = event.keyCode;
+            switch(key) {
+                case 37: this.previousSlide();
+                    break;
+                case 39: this.nextSlide();
+                    break;
+            }
+        });
+    };
+
+    previousSlide  = () =>  {
+        let index = this.state.index;
+        index--;
+        if(index === -1) index = this.state.lastIndex;
+        this.setSlide(index);
+    };
+
+    nextSlide  = () =>  {
+        let index = this.state.index;
+        if(index === this.state.lastIndex) index = 0;
+        else index++;
+        this.setSlide(index);
+    };
+
+    setSlide =  (i) =>  {
+        this.setState({
+            index: i
+        });
+    };
+
+    getSlides  = () =>  {
+        const { children } = this.props;
+        let slides = [];
+        let i = 0;
+        while(i < children.length) {
+            let slideItems = [];
+            for(let j = 0; j < this.state.count && i < children.length; j++) {
+                let slideItem = (
+                    <section key={i} className="slider-item">
+                        {children[i]}
+                    </section>
+                );
+                slideItems.push(slideItem);
+                i++;
+            }
+            let slide = (
+                <section key={i} className="slider-slide">
+                    {slideItems}
+                </section>
+            );
+            slides.push(slide);
+        }
+        return slides;
+    };
+	componentWillMount() {
+
+		fetch(`/api.php?mode=repertoire`)
+			.then((data) =>{
+				return data.json();})				
+					.then((user) => {
+                        let arr1 = user.data.map(function(i){return i});
+                        console.log(parseInt(arr1.length/4,10));
+                        if (arr1.length%4===0)
+                            this.setState ({
+
+                                lastIndex : parseInt(arr1.length/4-1,10)
+
+                            });
+                        else
+                            this.setState ({
+
+                                lastIndex : parseInt(arr1.length/4,10)
+
+                            });
+
+                    })
+							.catch((err) => {});
+  
+    }
+
+    render() {
+        const { index } = this.state;
+        const { showDots } = this.props;
+        let contentStyle = { left: index * -100 + "%" };
+        const slides = this.getSlides();
+
+        return (
+            <div id="slider_3_cont" onMouseOver={this.stopAutoPlay} onMouseOut={this.autoPlay}>
+                <div id="slider_button_left" onClick={this.previousSlide}>
+
+                </div>
+                <section className="slider">
+
+                    <section className="slider-content" style={contentStyle}>
+                        {slides}
+                    </section>
+
+                    {
+                        showDots && slides.length > 1 &&
+                        <section className="slider-dots">
+                            {slides.map((slide, i) => {
+                                const onClick = i === index ? null : () => this.setSlide(i);
+                                return <span key={i} className={`slider-dot ${i === index ? "selected" : ""}`} onClick={onClick} />
+                            })}
+                        </section>
+                    }
+                </section>
+                <div id="slider_button_right" onClick={this.nextSlide}>
+
+                </div>
+            </div>
+        );
+    }
+}
+
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            items: [
+
+                // 1 четверка
+                {
+                    title: "День Защитника Отечества",
+                    title_href: "#1",
+                    image: "https://moscowcharity.ru/wp-content/uploads/2017/04/Teatr_E%60kspromt_2-600x600.jpg",
+                    duration: "1 ч 20 мин",
+                    price: "250 руб.",
+                    button: "https://www.yandex.ru/"
+
+                },
+                {
+                    title: "Мужчина к празднику",
+                    title_href: "#2",
+                    image: "http://uploads.likengo.ru/uploads/afishacover/48/9c/14423a151c998fabecbde86d0c32.jpg",
+                    duration: "1 ч 20 мин",
+                    price: "350 руб.",
+                    button: "https://www.google.ru/"
+                },
+                {
+                    title: "Как боги",
+                    title_href: "#3",
+                    image: "http://uploads.likengo.ru/uploads/afishacover/2f/6a/5e1d042981de4fba0e9a4d445afc.jpg",
+                    duration: "1 ч 20 мин",
+                    price: "250 руб.",
+                    button: "https://yandex.ru/pogoda/penza?from=serp_title"
+                },
+                {
+                    title: "Наедине со всеми",
+                    title_href: "#4",
+                    image: "https://mysplash.ru/uploads/afisha/r0/sg/6d178848c78214c90682bc6d5835222d-600x600.jpg",
+                    duration: "1 ч 20 мин",
+                    price: "150 руб.",
+                    button: "https://www.gismeteo.ru/"
+                },
+
+
+                // 2 четверка
+
+                {
+                    title: "День Защитника Отечества",
+                    title_href: "#1",
+                    image: "https://moscowcharity.ru/wp-content/uploads/2017/04/Teatr_E%60kspromt_2-600x600.jpg",
+                    duration: "1 ч 20 мин",
+                    price: "250 руб.",
+                    button: "https://www.yandex.ru/"
+
+                },
+                {
+                    title: "Мужчина к празднику",
+                    title_href: "#2",
+                    image: "http://uploads.likengo.ru/uploads/afishacover/48/9c/14423a151c998fabecbde86d0c32.jpg",
+                    duration: "1 ч 20 мин",
+                    price: "450 руб.",
+                    button: "https://www.google.ru/"
+                },
+                {
+                    title: "Как боги",
+                    title_href: "#3",
+                    image: "http://uploads.likengo.ru/uploads/afishacover/2f/6a/5e1d042981de4fba0e9a4d445afc.jpg",
+                    duration: "1 ч 20 мин",
+                    price: "550 руб.",
+                    button: "https://yandex.ru/pogoda/penza?from=serp_title"
+                },
+                {
+                    title: "Наедине со всеми",
+                    title_href: "#4",
+                    image: "https://mysplash.ru/uploads/afisha/r0/sg/6d178848c78214c90682bc6d5835222d-600x600.jpg",
+                    duration: "1 ч 20 мин",
+                    price: "50 руб.",
+                    button: "https://www.gismeteo.ru/"
+                },
+
+                // 3 четверка
+
+                {
+                    title: "День Защитника Отечества",
+                    title_href: "#1",
+                    image: "https://moscowcharity.ru/wp-content/uploads/2017/04/Teatr_E%60kspromt_2-600x600.jpg",
+                    duration: "1 ч 20 мин",
+                    price: "250 руб.",
+                    button: "https://www.yandex.ru/"
+
+                },
+                {
+                    title: "Мужчина к празднику",
+                    title_href: "#2",
+                    image: "http://uploads.likengo.ru/uploads/afishacover/48/9c/14423a151c998fabecbde86d0c32.jpg",
+                    duration: "1 ч 20 мин",
+                    price: "200 руб.",
+                    button: "https://www.google.ru/"
+                },
+                {
+                    title: "Как боги",
+                    title_href: "#3",
+                    image: "http://uploads.likengo.ru/uploads/afishacover/2f/6a/5e1d042981de4fba0e9a4d445afc.jpg",
+                    duration: "1 ч 20 мин",
+                    price: "350 руб.",
+                    button: "https://yandex.ru/pogoda/penza?from=serp_title"
+                },
+                {
+                    name: "Наедине со всеми",
+                    title_href: "#4",
+                    photos: "https://mysplash.ru/uploads/afisha/r0/sg/6d178848c78214c90682bc6d5835222d-600x600.jpg",
+                    duration: "1 ч 20 мин",
+                    price: "150 руб.",
+                    button: "https://www.gismeteo.ru/"
+                },
+
+            ]
+        };
+    }
+	componentWillMount() {
+		fetch(`/api.php?mode=repertoire`)
+			.then((data) =>{
+				return data.json();})				
+					.then((user) => {
+						let arr = user.data.map(function(i){return i});
+						console.log(arr);
+						this.setState ({
+							items: arr,
+							// lastIndex : arr.length,
+						// title : arr.map(function(i){return i.name}),
+						// text : arr.map(function(i){return i.description}),
+						// images : arr.map(function(i){return i.photos}),
+						// date : arr.map(function(i){ let  k =  i.date.split (' '); return k[0]}),
+						// month : arr.map(function(i){ let  k =  i.date.split (' '); return k[1]}),
+						// button : arr.map(function(i){return `/newpage.html?id=${i.id_news}`}),
+						});
+
+
+						
+						})
+							.catch((err) => {});
+	}
+    
+
+    render() {
+        const SlideSettings = {
+            count: 4,
+            autoPlay: true,
+            timeToSlide: 10000,
+            showDots: false,
+            pauseOnMouseOver: true,
+        }
+        return (
+            <Slider {...SlideSettings}>
+                {this.state.items.map((item, index) => {
+                    return (
+                        <section key={index} className="container">
+                            <div className="repertory_block" key={"repertory_block_" + [index]}>
+                                <div className={"repertory_content_" + [index%2]}>
+
+                                    <div className={"repertory_content_title"}>
+                                        <a href={item.title_href}>{item.name}</a>
+                                    </div>
+
+                                    <div className={"repertory_content_img"}>
+                                        <a href={item.title_href}>
+                                            <div key={"repertory_content_img_" + [index]} alt="img" className="repertory_content_img_image">
+                                                <div key={"repertory_content_img_" + [index]} alt="img" className="repertory_content_img_image_all" style={{backgroundImage: "url(" + item.photos + ")", height:(test/5) + 'px'}} />
+                                            </div>
+
+                                        </a>
+                                    </div>
+
+                                    <div className={"repertory_content_duration"}>
+                                        <a>Продолжительность: </a>
+                                        <aside>
+                                            {item.timing}
+                                        </aside>
+                                    </div>
+
+                                    <div className={"repertory_content_price"}>
+                                        <a>Цена билета: </a>
+                                        <aside>
+                                            {item.price}
+                                        </aside>
+                                    </div>
+
+                                    <div className={"repertory_content_button"}>
+                                        <a href={`/perfomance.html?id=${index+1}` }key={"repertory_content_button" + [index]}>
+                                            <div key={"repertory_content_button_" + [index]} className={"repertory_content_button_inside"} >
+                                                <u>Подробнее</u>
+                                            </div>
+                                        </a>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </section>
+                    );
+                })}
+            </Slider>
+        );
+    }
+}
+
+class Content extends Component {
+    constructor(props) {
+        super(props);
+
         let { table_img } = props;
         let { table_name } = props;
         let { table_date } = props;
@@ -24,17 +374,8 @@ class Slider extends Component {
         let { table_price } = props;
         let { table_button } = props;
         let { table_time } = props;
-        let { title_href } = props;
-
 
         this.state = {
-            date: [ ...date],
-            button: [ ...button],
-            time: [ ...time],
-            title: [ ...title],
-            img: [ ...img],
-            duration: [ ...duration],
-            price: [ ...price],
             table_img: [ ...table_img],
             table_name: [ ...table_name],
             table_date: [ ...table_date],
@@ -42,12 +383,32 @@ class Slider extends Component {
             table_price: [ ...table_price],
             table_button: [ ...table_button],
             table_time: [ ...table_time],
-            title_href: [ ...title_href],
 
             but_state: true
         };
         this.right_button = this.right_button.bind(this);
         this.left_button = this.left_button.bind(this);
+    }
+
+
+	componentDidMount() {
+		fetch(`/api.php?mode=sessions`)
+			.then((data) =>{console.log(data);
+				return data.json();})				
+					.then((user) => {console.log(user);
+						let arr2 = user.data.map(function(i){return i});
+						console.log(arr2);
+						this.setState ({
+						table_name : arr2.map(function(i){return i.name}),
+						table_price: arr2.map(function(i){return i.prices}),
+						table_time: arr2.map(function(i){return i.time}),
+						table_length: arr2.map(function(i){return i.timing}),
+						table_img : arr2.map(function(i){return i.photos}),
+						table_date : arr2.map(function(i){ return i.date}),
+						});						
+						})
+							.catch((err) => {});
+  
     }
 
     right_button() {
@@ -65,12 +426,12 @@ class Slider extends Component {
     }
 
     render() {
-        let { title_href, date, button, time, title, img, duration, price, table_img, table_name, table_date, table_length, table_price, table_button, table_time} = this.state;
+        let {  img, table_img, table_name, table_date, table_length, table_price, table_button, table_time} = this.state;
         const { but_state } = this.state;
-       /* function test() {
-            but_test = !but_test;
-            alert(but_test)
-        }     */
+        /* function test() {
+             but_test = !but_test;
+             alert(but_test)
+         }     */
 
         return (
             <div>
@@ -91,72 +452,27 @@ class Slider extends Component {
 
                             <div id="repertory_content">
                                 {
-                                    button.map((button, index) =>
-                                        <div className="repertory_block" key={"repertory_block_" + [index]}>
-                                            <div className={"repertory_content_" + [index]}>
-
-                                                <div className={"repertory_content_date"}>
-                                                    {date[index]}
-                                                </div>
-
-                                                <div className={"repertory_content_time"}>
-                                                    {time[index]}
-                                                </div>
-
-                                                <div className={"repertory_content_title"}>
-                                                    <a href={title_href[index]}>{title[index]}</a>
-                                                </div>
-
-                                                <div className={"repertory_content_img"}>
-                                                    <a href={title_href[index]}><img key={"repertory_content_img_" + [index]} alt="img" className="repertory_content_img_image" src={img[index]} /></a>
-                                                </div>
-
-                                                <div className={"repertory_content_duration"}>
-                                                    <a>Продолжительность: </a>
-                                                    <aside>
-                                                        {duration[index]}
-                                                    </aside>
-                                                </div>
-
-                                                <div className={"repertory_content_price"}>
-                                                    <a>Цена билета: </a>
-                                                    <aside>
-                                                        {price[index]}
-                                                    </aside>
-                                                </div>
-
-                                                <div className={"repertory_content_button"}>
-                                                    <a href={button} key={"repertory_content_button" + [index]}>
-                                                        <div key={"repertory_content_button_" + [index]} className={"repertory_content_button_inside"} >
-                                                            <u>Подробнее</u>
-                                                        </div>
-                                                    </a>
-                                                </div>
-
-
-                                            </div>
-                                        </div>
-                                    )
+                                    <App/>
                                 }
                             </div>
 
                         )}
 
                         {  !but_state &&
-                            (
-                                <div id="table_content">
-                                    <div id="table_head">
-                                        <div id="table_head_left" className="table_head_title"/>
-                                        <div className="table_head_title" id="table_head_name"><a>Название</a></div>
-                                        <div className="table_head_title" id="table_head_date"><a>Дата</a></div>
-                                        <div className="table_head_title" id="table_head_time"><a>Время</a></div>
-                                        <div className="table_head_title" id="table_head_length"><a>Длительность</a></div>
-                                        <div className="table_head_title" id="table_head_price"><a>Цена</a></div>
-                                        <div id="table_head_right" className="table_head_title"/>
-                                    </div>
+                        (
+                            <div id="table_content">
+                                <div id="table_head">
+                                    <div id="table_head_left" className="table_head_title"/>
+                                    <div className="table_head_title" id="table_head_name"><a>Название</a></div>
+                                    <div className="table_head_title" id="table_head_date"><a>Дата</a></div>
+                                    <div className="table_head_title" id="table_head_time"><a>Время</a></div>
+                                    <div className="table_head_title" id="table_head_length"><a>Длительность</a></div>
+                                    <div className="table_head_title" id="table_head_price"><a>Цена</a></div>
+                                    <div id="table_head_right" className="table_head_title"/>
+                                </div>
 
-                                    <div id="table_content2">
-                                        {
+                                <div id="table_content2">
+                                    {
                                         table_img.map((table_img, index) =>
                                             <div className={"table_info_cont_" + [index]}>
                                                 <div className={"table_info"}>
@@ -185,16 +501,16 @@ class Slider extends Component {
                                                     </div>
 
                                                     <div className={"table_info_button"}>
-                                                        <a href={table_button[index]}>Купить</a>
+                                                        <a href={`/booking.html?id=${index+1}`} key={"table_info_button" + [index]} >Купить</a>
                                                     </div>
                                                 </div>
 
                                                 <div className="table_info_border" />
                                             </div>
                                         )}
-                                    </div>
                                 </div>
-                            )}
+                            </div>
+                        )}
 
                     </div>
                 </div>
@@ -204,62 +520,6 @@ class Slider extends Component {
 }
 
 function withTestImages(WrappedComponent) {
-
-    let date = [
-        '23 Февраль',
-        '1 Марта',
-        '8 Марта',
-        '1 Апреля',
-    ];
-
-    let time = [
-        'Пятница 17:00',
-        'Четверг 15:00',
-        'Среда 18:00',
-        'Пятница 17:00',
-    ];
-
-    let title = [
-        'День Защитника Отечества',
-        'Мужчина к празднику',
-        'Как боги',
-        'Наедине со всеми',
-    ];
-
-    let title_href = [
-        '#1',
-        '#2',
-        '#3',
-        '#4',
-    ];
-
-    let img = [
-        'https://moscowcharity.ru/wp-content/uploads/2017/04/Teatr_E%60kspromt_2-600x600.jpg',
-        'http://uploads.likengo.ru/uploads/afishacover/48/9c/14423a151c998fabecbde86d0c32.jpg',
-        'http://uploads.likengo.ru/uploads/afishacover/2f/6a/5e1d042981de4fba0e9a4d445afc.jpg',
-        'https://mysplash.ru/uploads/afisha/r0/sg/6d178848c78214c90682bc6d5835222d-600x600.jpg',
-    ];
-
-    let duration = [
-        '1 ч 20 мин',
-        '1 ч 20 мин',
-        '1 ч 20 мин',
-        '1 ч 20 мин',
-    ];
-
-    let price = [
-        '250 руб.',
-        '350 руб.',
-        '200 руб.',
-        '280 руб.',
-    ];
-
-    let button = [
-        'https://www.yandex.ru/',
-        'https://www.google.ru/',
-        'https://yandex.ru/pogoda/penza?from=serp_title',
-        'https://www.gismeteo.ru/',
-    ];
 
     /* Расписание */
 
@@ -313,7 +573,7 @@ function withTestImages(WrappedComponent) {
     ];
 
 
-    let Wrapper = props => <WrappedComponent title_href={title_href} date={date} time={time} title={title} img={img} duration={duration} price={price} button={button} table_img={table_img} table_name={table_name} table_date={table_date} table_length={table_length} table_price={table_price} table_button={table_button} table_time={table_time} {...props} />;
+    let Wrapper = props => <WrappedComponent table_img={table_img} table_name={table_name} table_date={table_date} table_length={table_length} table_price={table_price} table_button={table_button} table_time={table_time} {...props} />;
 
     Wrapper.displayName = `WithTestImages(${getDisplayName(WrappedComponent)})`;
 
@@ -321,7 +581,7 @@ function withTestImages(WrappedComponent) {
 }
 
 
-const TestSlider = withTestImages(Slider);
+const TestSlider = withTestImages(Content);
 
 
 
@@ -332,4 +592,3 @@ render(
 
 
 /* -------------------------------------------------------- */
-

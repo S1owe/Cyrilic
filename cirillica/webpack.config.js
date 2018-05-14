@@ -2,8 +2,16 @@ const path = require("path");
 
 module.exports = {
   entry:
-  {app1 : './src/index.js',
-  app2 :'./src/news.js', } , 
+  {
+      index : './src/index.js',
+      news :'./src/news.js',
+      booking :'./src/booking-index.js',
+      perfomance :'./src/perfomance-index.js',
+	  admin:'./src/admin.js',
+	  signup:'./src/signup-index.js',
+      input:'./src/input-index.js',
+      people_theater: './src/people-index.js'
+  } , 
   output: 
   {
     filename: '[name].js',
@@ -22,9 +30,13 @@ module.exports = {
 				loader: 'babel-loader',
 				options: 
 				{
-					presets: ['es2015', 'react']
-				}
-			}
+					presets: ['es2015', 'stage-1', 'react']
+				},
+				
+			},
+			
+	
+			
 		},
 		{
 			test: /\.(css)$/,
@@ -37,16 +49,41 @@ module.exports = {
 			}]
 		},
 		{
-          test: /\.ttf$/,
-          use: [
+			test: /\.(jpg)$/,
+			use: 
+			[{
+				loader: 'url-loader',
+			},]
+		},
+		{
+			test: /\.(png)$/,
+            use:
+                [{
+                    loader: 'url-loader',
+                },]
+        },
             {
-              loader: 'ttf-loader',
-              options: {
-                name: './font/[hash].[ext]',
-              },
+                test: /\.ttf$/,
+                use: [
+                    {
+                        loader: 'ttf-loader',
+                        options: {
+                            name: './fonts/[hash].[ext]',
+                        },
+                    },
+                ]
             },
-          ]
-      }
+            {
+                test: /\.otf$/,
+                use: [
+                    {
+                        loader: 'ttf-loader',
+                        options: {
+                            name: './fonts/[hash].[ext]',
+                        },
+                    },
+                ]
+            }
 		]
 	},
 	

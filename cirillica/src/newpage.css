@@ -7,13 +7,15 @@
 
 .backnew {
 	text-align: center;
-    background-color: white; 
+    background-color: transparent;
 	color: black;
     width: 9.5%;
     height: 100%;
 	margin-right :90%;
 	position:fixed;
 	font-size: 21px;
+	font-family:SF-UI-Display-Medium;
+	src: url("fonts/SF-UI-Display-Medium.ttf");
 }
 #new_photo {
 	display:block;
@@ -24,37 +26,40 @@
 
 
 #new_title {
-
+	font-size: 35px;
 	text-align : center;
-	font-size: 45px;
-	margin-top : 50px;
+	margin-top : 6%;
     margin-bottom : 50px;
-
+	margin-left : 9.5%;
+	margin-right : 9.5%;
 }
 
 #new_body {
-	
-	float:left;
+
+	text-align : justify;
     margin-bottom : 50px;
-	margin-left : 40px;
-	margin-right : 40px;
+	margin-left : 9.5%;
+	margin-right : 9.5%;
 	font-size: 20px;
 }
 .back {
+	font-family:SF-UI-Display-Medium;
+	src: url("fonts/SF-UI-Display-Medium.ttf");
 	width: 16px;
+	height: 16px;
 	margin-top :40px;
 	font-size: 21px;
+	background-color: transparent;
 	}
 
 .closenew {
-    background-color: white; 
+    background-color: transparent;
 	color: black;
     width: 9.5%;
     height: 100%;
 	margin-left :90.5%;
 	margin-right :0%;
 	position:fixed;
-	margin-top :10px;
 	text-align: center;
 	font-size: 23px;
 }

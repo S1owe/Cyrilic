@@ -24,11 +24,11 @@ body {
     left: 10%;
     right: 10%;
     max-width: 100%;
-    /*height: 2470px;*/
-    height: auto;
+    min-height: 100%;
     box-shadow: 0 0 10px 0px #686868;
     position: absolute;
     align-content: center;
+    background: #f8f8f8;
 }
 
 a {
@@ -69,12 +69,12 @@ a {
 
 header {
     height: 127px;
-    position: fixed;
+    /* position: fixed; */
     top: 0;
     margin: auto;
     left: 10%;
     right: 10%;
-    max-width: 100%;
+    min-width: 100%;
 }
 
 nav {
@@ -97,6 +97,7 @@ nav {
 .topnav {
     background-color: white;
     text-align: center;
+	weight : 100%;
 
 }
 
@@ -125,8 +126,9 @@ nav {
         left: 0;
         right: 0;
         margin: 0;
-        width: 1024px;
+
         max-width: 100%;
+        height: 100%;
     }
     header{
         left: 0;
@@ -148,14 +150,18 @@ nav {
 footer {
     height: 280px;
     max-width: 100%; 
-    position: relative;
+    position: absolute;
     bottom: 0;
+    left: 10%;
+    right: 10%;
+    top: 100%;
 }
 
 .heading{
     font-family: Myriad Pro;
     font-size: 60px;
     text-align: center;
+
 }
 
 .footer_container{
@@ -197,9 +203,9 @@ textarea {
     font-family: SF UI Display;
 }
 
-.container {
-    margin-top: 140px;
-}
+/* .container { */
+    /* margin-top: 140px; */
+/* } */
 
 #commentform textarea, input[type=text]{
     width: 247px;
@@ -312,6 +318,20 @@ textarea {
     font-family: Myriad Pro, sans-serif;
     font-size: 12px;
 }
+#input1
+{
+    margin-top: 2%;
+}
+#signup
+{
+    margin-top: 2%;
+}
 
 
-
+#news_of_the_theater{
+    color: #737373;
+    font-size: 30px;
+    font-family: Myriad Pro, sans-serif;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
